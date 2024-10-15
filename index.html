@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WIFY JSON form test</title>
-    <!-- style section -->
+
     <style>
 
         body {
@@ -69,13 +69,13 @@
     <div class="form_container">
         <h1>WIFY JSON form test</h1>
         <form id="form_element">
-            <!-- from input tag and label -->
+
             <button type="submit">Submit</button>
         </form>
     </div>
 
     <script>
-        // given data
+
         const givenFieldData = [
             {
                 "key": "user_name",
@@ -95,7 +95,7 @@
                 "type": "email"
             }
         ]
-    //   function for create input tag and label
+
         function create_From_Tag() {
             const form = document.getElementById("form_element");
 
@@ -125,7 +125,7 @@
 
         const formSubmission = document.getElementById("form_element")
 
-        // event listner for form submission
+
         formSubmission.addEventListener("submit", (e) => {
             e.preventDefault();
 
@@ -141,7 +141,7 @@
 
             if (check_Validation) {
                 alert('Submitted successfully');
-                // clear input value
+
                 formSubmission.reset()
             }
         })
