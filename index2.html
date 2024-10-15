@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIFY JSON form test</title>
+    <!-- style section -->
+    <style>
+
+        body {
+            background-color: #f4f4f4;
+           
+        }
+
+        .form_container {
+            max-width: 340px;
+            margin: 10% auto;
+            padding: 20px;
+            background-color: #fff;
+
+            border-radius: 8px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+
+        }
+
+        label {
+            font-size: 20px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input {
+            width: 80%;
+            padding: 8px;
+            border: 1px solid #777777;
+            margin-bottom: 11px;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 25%;
+            font-size: 15px;
+            background-color: rgb(241, 240, 240);
+            padding: 8px;
+            border-radius: 3px;
+            cursor: pointer;
+            border: 1px solid #777777;
+            color: rgb(0, 0, 0);
+        }
+
+        button:hover {
+            background-color: darkgreen;
+            transition: all 0.2s linear;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form_container">
+        <h1>WIFY JSON form test</h1>
+        <form id="form_element">
+            <!-- from input tag and label -->
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // given data
+        const givenFieldData = [
+            {
+                "key": "user_name",
+                "label": "Name",
+                "type": "text",
+                "maxLength": "50"
+            },
+            {
+                "key": "mobile_no",
+                "label": "Mobile number",
+                "type": "number",
+                "maxLength": "10"
+            },
+            {
+                "key": "email",
+                "label": "Email",
+                "type": "email"
+            }
+        ]
+    //   function for create input tag and label
+        function create_From_Tag() {
+            const form = document.getElementById("form_element");
+
+            givenFieldData.forEach((temp) => {
+                const label = document.createElement("label")
+                label.innerText = `${temp.label}:`
+
+                const inputTag = document.createElement("input")
+                inputTag.type = temp.type
+                inputTag.id = temp.key
+                inputTag.placeholder = `Enter ${temp.label}`
+                inputTag.required = true;
+
+                if (temp.maxLength) {
+                    inputTag.maxLength = temp.maxLength
+                }
+
+
+                form.insertBefore(label, form.lastElementChild);
+                form.insertBefore(inputTag, form.lastElementChild);
+
+
+            })
+        }
+        
+        create_From_Tag()
+
+        const formSubmission = document.getElementById("form_element")
+
+        // event listner for form submission
+        formSubmission.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let check_Validation = true;
+
+            const mobileInput = document.getElementById('mobile_no');
+
+            if (mobileInput.value.length !== 10) {
+                alert('Mobile number should be 10 digit')
+                check_Validation = false;
+            }
+
+
+            if (check_Validation) {
+                alert('Submitted successfully');
+                // clear input value
+                formSubmission.reset()
+            }
+        })
+
+    </script>
+</body>
+</html>
